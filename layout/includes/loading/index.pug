@@ -1,5 +1,9 @@
 if theme.preloader.source === 1
-  include ./fullpage-loading.pug
+  case theme.preloader.load_style
+  when 'gear'
+    include ./load_style/gear.pug
+  default
+    include ./fullpage-loading.pug
 else if theme.preloader.source === 2
   include ./pace.pug
 else
