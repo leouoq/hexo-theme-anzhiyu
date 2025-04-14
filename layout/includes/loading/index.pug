@@ -3,5 +3,10 @@ if theme.preloader.source === 1
 else if theme.preloader.source === 2
   include ./pace.pug
 else
-  include ./gear.pug
-  include ./pace.pug
+  case theme.preloader.load_style
+    when 'gear'
+      include ./gear.pug
+      include ./pace.pug
+    default
+      include ./fullpage-loading.pug
+      include ./pace.pug
