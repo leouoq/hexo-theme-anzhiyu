@@ -1,4 +1,4 @@
-#loading-box
+#loading-box(onclick='document.getElementById("loading-box").classList.add("loaded")')
   .gear-loader
     .gear-loader_overlay
     .gear-loader_cogs
@@ -17,3 +17,19 @@
         .gear-bottom_part
         .gear-bottom_part
         .gear-bottom_hole
+script.
+  const preloader = {
+    endLoading: () => {
+      document.getElementById('loading-box').classList.add("loaded");
+    },
+    initLoading: () => {
+      document.getElementById('loading-box').classList.remove("loaded")
+    }
+  }
+  window.addEventListener('load',()=> { preloader.endLoading() })
+  setTimeout(function(){preloader.endLoading();},10000)
+
+  if (!{theme.pjax && theme.pjax.enable}) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
